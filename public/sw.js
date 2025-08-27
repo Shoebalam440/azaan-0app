@@ -80,8 +80,8 @@ self.addEventListener('fetch', (event) => {
         }
         return fetch(request)
           .then((response) => {
-            // Cache successful responses
-            if (response.status === 200) {
+            // Cache successful responses (only for same-origin requests)
+            if (response.status === 200 && request.url.startsWith(self.location.origin)) {
               const responseClone = response.clone();
               caches.open(DYNAMIC_CACHE).then((cache) => {
                 cache.put(request, responseClone);
