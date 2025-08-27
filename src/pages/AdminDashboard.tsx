@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/auth-store';
 import { useToast } from '@/hooks/use-toast';
 import { prayerService } from '@/lib/prayer-service';
+import { formatTime12Hour } from '@/lib/utils';
 
 interface PrayerTime {
   _id?: string;
@@ -283,7 +284,7 @@ export default function AdminDashboard() {
                 })}
               </CardTitle>
               <CardDescription>
-                Set the prayer times for this date. All times should be in 24-hour format (HH:MM).
+                Set the prayer times for this date. All times should be in 24-hour format (HH:MM). Times will be displayed to users in 12-hour format.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -379,7 +380,7 @@ export default function AdminDashboard() {
                         {PRAYER_LABELS[prayer]}
                       </div>
                       <div className="text-lg font-mono font-semibold">
-                        {prayerTimes[prayer]}
+                        {formatTime12Hour(prayerTimes[prayer])}
                       </div>
                     </div>
                   ))}

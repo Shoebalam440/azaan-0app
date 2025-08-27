@@ -10,6 +10,7 @@ import { usePrayerStore } from '@/store/prayer-store';
 import { notificationService } from '@/lib/notification-service';
 import { InstallPrompt } from '@/components/InstallPrompt';
 import { NotificationSettings } from '@/components/NotificationSettings';
+import { formatTime12Hour } from '@/lib/utils';
 
 interface PrayerTimeDisplay {
   name: string;
@@ -159,7 +160,7 @@ function HomePage() {
 
       return {
         name: prayer.name,
-        time: prayer.time,
+        time: formatTime12Hour(prayer.time),
         arabic: prayerTranslations[prayer.name as keyof typeof prayerTranslations],
         isPassed,
         isNext,
