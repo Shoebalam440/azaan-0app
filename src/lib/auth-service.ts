@@ -40,8 +40,21 @@ class AuthService {
     // For testing purposes, use a fixed OTP
     const otp = '123456';
     
-    // Force clear any old data
+    // Force clear any old data and cache
     localStorage.removeItem(this.STORAGE_KEY);
+    
+    // Clear all caches to ensure fresh data
+    if ('caches' in window) {
+      try {
+        const cacheNames = await caches.keys();
+        await Promise.all(
+          cacheNames.map(cacheName => caches.delete(cacheName))
+        );
+        console.log('🧹 All caches cleared');
+      } catch (error) {
+        console.warn('Failed to clear caches:', error);
+      }
+    }
     
     // Store OTP with timestamp
     const users = this.getUsers();

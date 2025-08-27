@@ -1,7 +1,7 @@
 // Service Worker for Azaan PWA
-const CACHE_NAME = 'azaan-pwa-v2';
-const STATIC_CACHE = 'azaan-static-v2';
-const DYNAMIC_CACHE = 'azaan-dynamic-v2';
+const CACHE_NAME = 'azaan-pwa-v3';
+const STATIC_CACHE = 'azaan-static-v3';
+const DYNAMIC_CACHE = 'azaan-dynamic-v3';
 
 const STATIC_ASSETS = [
   '/',
