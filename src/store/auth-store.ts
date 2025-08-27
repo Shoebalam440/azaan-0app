@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { auth } from '@devvai/devv-code-backend';
+import { authService } from '@/lib/auth-service';
 
 interface User {
   projectId: string;
@@ -33,7 +33,7 @@ export const useAuthStore = create<AuthState>()(
       sendOTP: async (email: string) => {
         set({ isLoading: true });
         try {
-          await auth.sendOTP(email);
+          await authService.sendOTP(email);
         } finally {
           set({ isLoading: false });
         }
@@ -42,7 +42,7 @@ export const useAuthStore = create<AuthState>()(
       verifyOTP: async (email: string, code: string) => {
         set({ isLoading: true });
         try {
-          const response = await auth.verifyOTP(email, code);
+          const response = await authService.verifyOTP(email, code);
           set({ 
             user: response.user, 
             isAuthenticated: true,
@@ -58,7 +58,7 @@ export const useAuthStore = create<AuthState>()(
       logout: async () => {
         set({ isLoading: true });
         try {
-          await auth.logout();
+          await authService.logout();
           set({ 
             user: null, 
             isAuthenticated: false,
