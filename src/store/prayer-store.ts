@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { table } from '@devvai/devv-code-backend';
+import { prayerService } from '@/lib/prayer-service';
 
 export interface PrayerTimes {
   id: string;
@@ -40,7 +40,7 @@ export const usePrayerStore = create<PrayerStore>((set, get) => ({
     set({ loading: true, error: null });
     
     try {
-      const result = await table.getItems('ewa3uqhxhfy8', {
+      const result = await prayerService.getItems('ewa3uqhxhfy8', {
         query: { date: date },
         limit: 1
       });

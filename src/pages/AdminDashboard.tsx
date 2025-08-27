@@ -9,7 +9,7 @@ import { Building2, LogOut, Clock, Save, Plus, Edit3, Trash2, Calendar } from 'l
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/auth-store';
 import { useToast } from '@/hooks/use-toast';
-import { table } from '@devvai/devv-code-backend';
+import { prayerService } from '@/lib/prayer-service';
 
 interface PrayerTime {
   _id?: string;
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
   const loadPrayerTimes = async (date: string) => {
     try {
       setIsLoading(true);
-      const response = await table.getItems('ewa3uqhxhfy8', {
+      const response = await prayerService.getItems('ewa3uqhxhfy8', {
         query: { date },
         limit: 1
       });
@@ -116,7 +116,7 @@ export default function AdminDashboard() {
       
       if (isEditing && existingRecord) {
         // Update existing record
-        await table.updateItem('ewa3uqhxhfy8', {
+        await prayerService.updateItem('ewa3uqhxhfy8', {
           _uid: existingRecord._uid,
           _id: existingRecord._id,
           ...prayerTimes
@@ -127,7 +127,7 @@ export default function AdminDashboard() {
         });
       } else {
         // Create new record
-        await table.addItem('ewa3uqhxhfy8', prayerTimes);
+        await prayerService.addItem('ewa3uqhxhfy8', prayerTimes);
         toast({
           title: "Prayer Times Saved", 
           description: `Successfully saved prayer times for ${selectedDate}`,
@@ -155,7 +155,7 @@ export default function AdminDashboard() {
     
     try {
       setIsLoading(true);
-      await table.deleteItem('ewa3uqhxhfy8', {
+      await prayerService.deleteItem('ewa3uqhxhfy8', {
         _uid: existingRecord._uid,
         _id: existingRecord._id
       });
