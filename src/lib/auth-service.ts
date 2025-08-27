@@ -37,8 +37,8 @@ class AuthService {
   }
 
   async sendOTP(email: string): Promise<void> {
-    // Generate a simple 6-digit OTP
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    // For testing purposes, use a fixed OTP
+    const otp = '123456';
     
     // Store OTP with timestamp
     const users = this.getUsers();
@@ -49,32 +49,41 @@ class AuthService {
     });
     this.saveUsers(users);
 
-    // In a real app, this would send an email
-    // For now, we'll just log it to console
-    console.log(`OTP for ${email}: ${otp}`);
+    // Log OTP to console for easy testing
+    console.log(`🔐 OTP for ${email}: ${otp}`);
+    console.log(`📱 Use this OTP: ${otp}`);
     
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 1000));
   }
 
   async verifyOTP(email: string, code: string): Promise<{ user: User }> {
+    console.log(`🔍 Verifying OTP for ${email} with code: ${code}`);
+    
     const users = this.getUsers();
     const userData = users.get(email);
     
+    console.log(`📊 Stored users:`, users);
+    console.log(`📋 User data for ${email}:`, userData);
+    
     if (!userData) {
-      throw new Error('No OTP found for this email');
+      console.error(`❌ No OTP found for ${email}`);
+      throw new Error('No OTP found for this email. Please send a new verification code.');
     }
 
     // Check if OTP is expired
     if (Date.now() - userData.timestamp > this.OTP_EXPIRY) {
       users.delete(email);
       this.saveUsers(users);
-      throw new Error('OTP has expired');
+      console.error(`⏰ OTP expired for ${email}`);
+      throw new Error('OTP has expired. Please send a new verification code.');
     }
 
     // Check if OTP matches
+    console.log(`🔐 Comparing: "${userData.otp}" with "${code}"`);
     if (userData.otp !== code) {
-      throw new Error('Invalid OTP');
+      console.error(`❌ Invalid OTP for ${email}`);
+      throw new Error('Invalid OTP. Please check the code and try again.');
     }
 
     // Create user object
