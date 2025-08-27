@@ -1,0 +1,131 @@
+/**
+ * =====================================
+ *         UI DESIGN SYSTEM
+ * =====================================
+ * 
+ * Project: Azaan PWA - Prayer Notifications
+ * Type: Progressive Web App for Islamic Communities
+ * 
+ * DESIGN PHILOSOPHY
+ * -----------------
+ * Core Principle: Serene spirituality meets modern functionality
+ * Design Style: Islamic Minimalism with warm, calming tones
+ * Emotion Goal: Peace, reverence, and spiritual connection
+ * 
+ * VISUAL LANGUAGE
+ * ----------------
+ * Primary Focus: Prayer times and spiritual content
+ * Hierarchy: Clear time display, gentle notifications, accessible controls
+ * Whitespace: Generous breathing space for contemplative experience
+ * 
+ * COLOR SYSTEM
+ * -------------
+ * Islamic Green: 158 64% 52% - Primary brand, prayer times
+ * Deep Teal: 180 25% 25% - Secondary actions, admin interface
+ * Warm Gold: 45 93% 47% - Accents, active prayers, highlights
+ * Soft Cream: 48 15% 95% - Background warmth
+ * Prayer Blue: 210 40% 55% - Info states, notifications
+ * 
+ * TYPOGRAPHY
+ * ----------
+ * Display: Clean Arabic-friendly fonts for prayer names
+ * Body: Readable sans-serif for times and content
+ * Scale: Prominent time display, secondary prayer info
+ * 
+ * INTERACTIONS
+ * ------------
+ * Feedback: Gentle, respectful transitions
+ * Transitions: 250ms ease for spiritual calmness
+ * States: Subtle, non-intrusive indications
+ * 
+ * ACCESSIBILITY
+ * -------------
+ * Contrast: WCAG AAA for prayer times
+ * Focus: Clear indicators for keyboard navigation
+ * Motion: Respectful of prayer times and spiritual context
+ * ====================================
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 48 15% 95%;
+    --foreground: 180 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 180 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 180 25% 15%;
+    --primary: 158 64% 52%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 180 25% 25%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 48 8% 90%;
+    --muted-foreground: 180 15% 45%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 48 8% 85%;
+    --input: 0 0% 100%;
+    --ring: 158 64% 52%;
+    --chart-1: 158 64% 52%;
+    --chart-2: 180 25% 25%;
+    --chart-3: 45 93% 47%;
+    --chart-4: 210 40% 55%;
+    --chart-5: 280 35% 65%;
+    --radius: 0.75rem
+  ;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%}
+  .dark {
+    --background: 180 25% 8%;
+    --foreground: 48 15% 95%;
+    --card: 180 25% 12%;
+    --card-foreground: 48 15% 95%;
+    --popover: 180 25% 12%;
+    --popover-foreground: 48 15% 95%;
+    --primary: 158 64% 52%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 180 25% 20%;
+    --secondary-foreground: 48 15% 95%;
+    --muted: 180 25% 15%;
+    --muted-foreground: 48 10% 65%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 180 25% 18%;
+    --input: 180 25% 15%;
+    --ring: 158 64% 52%;
+    --chart-1: 158 64% 52%;
+    --chart-2: 180 25% 35%;
+    --chart-3: 45 93% 47%;
+    --chart-4: 210 40% 55%;
+    --chart-5: 280 35% 65%
+  ;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%}
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
