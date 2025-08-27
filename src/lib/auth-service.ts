@@ -40,6 +40,9 @@ class AuthService {
     // For testing purposes, use a fixed OTP
     const otp = '123456';
     
+    // Force clear any old data
+    localStorage.removeItem(this.STORAGE_KEY);
+    
     // Store OTP with timestamp
     const users = this.getUsers();
     users.set(email, {
