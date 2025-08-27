@@ -11,19 +11,43 @@ interface User {
 }
 
 class AuthService {
-  private users: Map<string, { email: string; otp: string; timestamp: number }> = new Map();
   private readonly OTP_EXPIRY = 5 * 60 * 1000; // 5 minutes
+  private readonly STORAGE_KEY = 'azaan_otp_storage';
+
+  private getUsers(): Map<string, { email: string; otp: string; timestamp: number }> {
+    try {
+      const stored = localStorage.getItem(this.STORAGE_KEY);
+      if (stored) {
+        const data = JSON.parse(stored);
+        return new Map(Object.entries(data));
+      }
+    } catch (error) {
+      console.warn('Failed to load OTP storage:', error);
+    }
+    return new Map();
+  }
+
+  private saveUsers(users: Map<string, { email: string; otp: string; timestamp: number }>): void {
+    try {
+      const data = Object.fromEntries(users);
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+    } catch (error) {
+      console.warn('Failed to save OTP storage:', error);
+    }
+  }
 
   async sendOTP(email: string): Promise<void> {
     // Generate a simple 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     
     // Store OTP with timestamp
-    this.users.set(email, {
+    const users = this.getUsers();
+    users.set(email, {
       email,
       otp,
       timestamp: Date.now()
     });
+    this.saveUsers(users);
 
     // In a real app, this would send an email
     // For now, we'll just log it to console
@@ -34,7 +58,8 @@ class AuthService {
   }
 
   async verifyOTP(email: string, code: string): Promise<{ user: User }> {
-    const userData = this.users.get(email);
+    const users = this.getUsers();
+    const userData = users.get(email);
     
     if (!userData) {
       throw new Error('No OTP found for this email');
@@ -42,7 +67,8 @@ class AuthService {
 
     // Check if OTP is expired
     if (Date.now() - userData.timestamp > this.OTP_EXPIRY) {
-      this.users.delete(email);
+      users.delete(email);
+      this.saveUsers(users);
       throw new Error('OTP has expired');
     }
 
@@ -62,7 +88,8 @@ class AuthService {
     };
 
     // Clear OTP after successful verification
-    this.users.delete(email);
+    users.delete(email);
+    this.saveUsers(users);
 
     return { user };
   }
