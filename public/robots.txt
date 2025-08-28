@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Crawl-delay: 10
+# Uncomment above and set delay in seconds if needed
+
+# Sitemap: https://faizan-e-taj.netlify.app/sitemap.xml
+# Uncomment and update with your sitemap URL

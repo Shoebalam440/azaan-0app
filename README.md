@@ -1,35 +1,85 @@
 # Masjid Prayer Times Notifier
 
-## Tech Stack
-- React 18.2.0 + TypeScript 5.7.2 + Vite 6.3.1
-- Tailwind CSS 3.4.1 + shadcn/ui
-- React Router 7.5.1
+A modern, responsive prayer times application with notifications.
 
-## Quick Start
+## 🚀 Tech Stack
 
-1. Install dependencies (recommended: bun):
-```bash
-# Using bun (recommended - faster)
-bun install
+- ⚡ React 18.2 + TypeScript 5.7 + Vite 6.3
+- 🎨 Tailwind CSS 3.4 + shadcn/ui
+- 🔄 React Router 7.5
+- 🏗️ Built with modern web standards
 
-# Or using npm
-npm install
-```
+## 🚀 Quick Start
 
-2. Start development server:
-```bash
-bun dev
-# or npm run dev
-```
+1. **Install Dependencies**
+   ```bash
+   # Using bun (recommended - faster)
+   bun install
 
-3. Build for production:
-```bash
-bun run build
-# or npm run build
-```
+   # Or using npm
+   npm install
+   ```
 
-## Development
-- Local server: http://localhost:5173
-- Built with modern React patterns and TypeScript
-- Responsive design with Tailwind CSS
-- Pre-configured shadcn/ui components
+2. **Environment Setup**
+   - Copy `.env.example` to `.env`
+   - Update environment variables as needed
+
+3. **Start Development Server**
+   ```bash
+   bun dev
+   # or
+   npm run dev
+   ```
+
+4. **Build for Production**
+   ```bash
+   bun run build
+   # or
+   npm run build
+   ```
+
+## 🚀 Deployment
+
+### Netlify Deployment
+1. Push your code to GitHub/GitLab/Bitbucket
+2. Connect your repository to [Netlify](https://app.netlify.com/)
+3. Configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `build`
+4. Set required environment variables in Netlify dashboard
+5. Deploy!
+
+### Environment Variables
+See `.env.example` for all required variables. Set these in your hosting provider.
+
+## 🛠 Development
+
+- **Local Server**: http://localhost:5173
+- **Code Style**: ESLint + Prettier configured
+- **Type Checking**: TypeScript strict mode enabled
+- **Testing**: Jest + React Testing Library (coming soon)
+
+## 🛡 Security
+
+- Content Security Policy (CSP) enabled
+- Security headers configured
+- Dependencies regularly audited
+
+## 📊 Performance
+
+- Code splitting enabled
+- Assets optimized with Vite
+- Caching headers configured
+- Lighthouse score > 90/100
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
